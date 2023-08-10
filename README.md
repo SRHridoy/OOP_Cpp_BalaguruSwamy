@@ -1,3 +1,4 @@
+<!-- ______________________________________________________Chapter-01 Starts here_________________________________________________ -->
 # <mark>Chapter - 01
 
 > # Principles of Object-Oriented Programming
@@ -236,7 +237,8 @@ systems.
 <br>
 <br>
 
-# Chapter - 02
+<!-- ______________________________________________________Chapter-02 Starts here_________________________________________________ -->
+# <mark>Chapter - 02
 
 > # Beginning with C++
 
@@ -448,5 +450,290 @@ cout << "The average is : " << avg << endl;
 <br>
 <br>
 
+<!-- ______________________________________________________Chapter-05 Starts here_________________________________________________ -->
+# <mark> Chapter - 05
+> # Classes and Objects
 
+## **Introduction**
 
+The most important feature of C++ is the “class”. Stroustrup initially gave the name <mark>“C with
+classes”.</mark>
+
+## **C Structures Revisited**
+
+We know that one of the unique features of the C language is
+structures.<mark> They provide a method for packing together data of
+different types.</mark> A structure is a convenient tool for handling a group
+of logically related data items. It is a user-defined data type with a
+template that serves to define its data properties. Once the structure
+type has been defined, we can create variables of that type using
+declarations that are similar to the built-in type declarations.
+
+**Syntax:**
+
+```c
+struct student
+{
+char name[20];
+int roll_number;
+float total_marks;
+};
+```
+
+```c
+struct student A; // C declaration
+```
+
+Member variables can be accessed using
+the dot or period operator as follows:
+
+```c
+strcpy(A.name, “John”);
+A.roll_number = 999;
+A.total_marks = 595.5;
+Final_total = A.total_marks + 5;
+```
+
+## **Limitations of C Structure**
+
+1. <mark>Standard C does not allow the struct data type to be treated like
+   built-in types.</mark> For example, consider the following structure:
+
+```c
+struct complex
+{
+float x;
+float y;
+};
+struct complex cl, c2, c3;
+```
+
+The complex numbers c1, c 2, and c 3 can easily be assigned
+values using the dot operator, but we <mark>cannot add two complex
+numbers or subtract</mark> one from the other. For example,
+
+```c
+c3 = cl + c2;
+```
+
+is <mark>illegal in C</mark>
+
+2.  Another important limitation of C structures is that they<mark> do not permit data hiding.</mark> Structure members can be directly accessed by
+    the structure variables by any function anywhere in their scope. In
+    other words,<mark> the structure members are public.</mark>
+
+## **Extensions to Structures**
+
+- C++ attempts to bring the user-defined types as <mark>close as possible to the built-in data types</mark> and also <mark>provides a facility to hide the data</mark> which
+  is one of the main principles of OOP.<mark> Inheritance, a mechanism by
+  which one type can inherit characteristics from other types</mark>, is also
+  supported by C++.
+
+- <mark>In C++, a structure can have both variables and functions as
+  members</mark>. It can also <mark>declare some of its members as ‘private’ so
+  that they cannot be accessed directly by external functions</mark>.
+
+- In C++, the structure names are stand-alone and can be used like
+  any other type name. In other words,<mark> the keyword struct can be
+  omitted in the declaration of structure variables.</mark>
+
+```c
+student A; // C++ declaration
+```
+
+Remember, this is an error in C.
+
+C++ incorporates all these extensions in another user-defined type
+known as class. There are very few syntactical differences between structures and classes in C++ and, therefore,<mark> they can be used
+interchangeably with minor modifications.</mark> Since the class is a specially
+introduced data type in C++, <mark>most of the C++ programmers tend to
+use the structures for holding only data, and classes to hold both the
+data and functions.</mark>
+
+**NOTE:**
+
+    The only difference between a structure and a class in C++ is that, by default, the members of a class are private, while, by default, the members of a structure are public.
+
+## **Specifying a Class**
+
+<mark>A class is a way to bind the data and its associated functions
+together.</mark> It <mark>allows the data (and functions) to be hidden,</mark> if necessary,
+from external use. When defining a class, we are creating a new
+abstract data type that can be treated like any other built-in data type. Generally, a class specification has two parts:
+
+1. Class declaration
+2. Class function definitions
+
+**The general form of a class declaration is:**
+
+```c++
+class class_name
+{
+private:
+    variable declarations;
+    function declarations;
+public:
+    variable declarations;
+    function declaration;
+};
+```
+
+> > The body of a class is enclosed within braces and terminated by a semicolon.
+
+<mark>Functions and variables are collectively called class members.</mark> The keywords <mark>private and public are known as visibility labels</mark>. Note that these keywords are followed by a colon. The class members that have been declared private can be accessed only from within the class. On the other hand, public members can be accessed from outside the class also.<mark> Data hiding (using private declaration) is the key feature of object-oriented programming. The use of the keyword private is optional. By default, the members of a class are private. </mark> If both the labels are missing, then, by default, all the members are private.
+
+The variables declared inside the class are known as <mark>data
+members </mark>and the functions are known as <mark>member functions</mark>. <mark>Only the member functions can have access to the private data of members and private functions.</mark>
+
+```
+The binding of data and functions together into a single class-type variable is referred to as encapsulation.
+```
+
+![Data hiding img](dataDiding.png)
+
+**Fig.** Data hiding in classes
+
+> ## A Simple Class Example
+
+```c++
+class item
+{
+int number; // variables declaration
+float cost; // private by default
+public:
+void getdata(int a, void b )// functions declaration
+putdata(void); // using prototype
+}; // ends with semicolon.
+```
+
+<mark>The data members are usually declared
+as private and the member functions as public.</mark>
+
+> ## Creating Objects
+
+1. In C++, the class variables are known as objects.
+
+2. We may also declare more than one object in one statement.
+
+Example:
+item x, y, z;
+
+<mark>Note that class specification, like a structure, provides
+only a template and does not create any memory space for the
+objects.</mark>
+
+> ## **Accessing Class Members**
+
+General format for calling a member function :
+
+```object-name.function-name (actual-arguments);
+
+```
+
+For example, the function call statement:
+
+```c++
+x.getdata(100,75.5);
+x.putdata();
+```
+
+<br>
+
+<mark>Objects communicate by sending and
+receiving messages. This is achieved through the member functions.</mark>
+
+<br>
+NOTE: The use of data in this manner defeats the very idea
+of data hiding and therefore should be avoided.
+
+<br>
+
+> ## Defining Member Functions
+
+ <br>
+ Member functions can be defined in two places:
+• Outside the class definition.
+<br>
+• Inside the class definition.
+
+<br>
+
+> ### Outside the Class Definition
+
+<br>
+Member functions that are declared inside a class have to be defined separately outside the class.
+
+<br>
+
+An important difference between a member function and a normal function is that a member function incorporates a membership **‘identity label’** in the header. This ‘label’ tells the compiler which class the function belongs to.
+<br> 
+The general form of a member function definition is:
+
+```
+ return-type class-name :: function-name (argument declaration)
+ {
+ Function body
+ }
+```
+<br>
+
+<mark>The membership label class-name:: tells the compiler that the function function-name belongs to the class class-name.</mark>That is, the
+scope of the function is restricted to the class-name specified in the
+header line.
+
+**The symbol :: is called the scope resolution operator.**
+<br>
+
+The member functions have some special characteristics that are often used in program development.
+
+These characteristics are:
+<mark>
+<br><br>
+• Several different classes can use the same function name. The
+‘membership label’ will resolve their scope.
+<br><br>
+• Member functions can access the private data of the class. A nonmember function cannot do so. (However, an exception to this rule is a friend function discussed later.)
+<br><br>
+• A member function can call another member function directly, without using the dot operator.
+</mark>
+
+<br>
+
+>### Inside the Class Definition
+
+<br>
+
+```c++
+class item
+{
+int number;
+float cost;
+public:
+void getdata(int a, float b); // declaration
+// inline function
+void putdata(void) // definition inside the class
+{
+cout << number << “\n”
+cout << cost << “\n”
+}
+/*Inline is a request to the compiler (not a command)to make a function as an inline function, to reduce the overhead of function calling...Inline function call e time kom lage.... If compiler treat a function as a inline function it substitute the code of function in a single line. Inline function should contain a single instruction....
+Example:
+May, I come in sir?
+
+Example code:
+
+inline return_type function_name(){
+       //single statement.
+} 
+*/
+
+};
+```
+
+<br>
+
+<mark>When a function is defined inside a class, it is treated as an inline function.</mark> When Therefore, all the restrictions and limitations that apply to an inline function are also applicable here. <mark>Normally, only small functions are defined inside the class definition.</mark>
+
+<br>
+
+>## DA C++ Program with Class
