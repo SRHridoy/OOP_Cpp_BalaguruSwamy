@@ -820,3 +820,218 @@ cost = b;
       A member function can be called by using its name inside another member function of the same class. This is known as nesting of member functions.
 
 ### <mark>Program 5.2 Nesting of Member Functions
+
+```cpp
+#include<iostream>
+using namespace std;
+
+class binary
+{
+string s;
+bool helper = true;
+void check_binary(void);
+public:
+    void read(void);
+    void make_ones_complement(void);
+};
+/*_____________________Function for Taking Input____________________*/
+void binary::read(void)
+{
+    cout << "Enter a Binary Number : ";
+    cin >> s;
+/*_____________________Nesting two methods/functions____________________*/
+    while (helper)
+    {
+        check_binary();
+        if(!helper)
+            break;
+    }
+}
+
+/*_____________________Function for Checking Binary And Exception Handling____________________*/
+void binary::check_binary(void)
+{
+/*_____________________Dhore nilam je vul nai tao check korsi____________________*/
+    helper = false;
+
+    for (int i = 0; i < s.length(); i++)
+    {
+        //if(s.at(i)!='0' and s.at(i)!='1')
+/*_____________________Same oporer ta ar nicher ta____________________*/
+        if(s[i]!='0' && s[i]!='1')
+        {
+            cout << "Sorry, please Enter a correct Binary Number(only 0 or only 1) : ";
+            cin >> s;
+            helper = true;
+            break;
+        }
+    }
+    if(!helper)
+        cout << "Your Binary Number is : " << s <<endl;
+}
+
+/*_____________________Fuction for making one's complement____________________*/
+void binary:: make_ones_complement()
+{
+    string temp = s;
+    for (int i = 0; i < s.length(); i++)
+    {
+        if(s[i]=='0')
+            s[i]='1';
+        else
+            s[i]='0';
+    }
+    cout << "One's Complement of "<<temp<< " is : "<< s << endl;
+}
+
+
+int main()
+{
+    binary bin1,bin2;
+    bin1.read();
+    bin1.make_ones_complement();
+}
+```
+
+> ## Private Member Functions
+Although it is normal practice to place <mark> all the data items in a private
+section and all the functions in public </mark>, some situations may require
+certain functions to be hidden (like private data) from the outside
+calls. Tasks such as <mark> deleting an account in a customer file, or
+providing increment to an employee are events of serious consequences and therefore the functions handling such tasks
+should have restricted access. We can place these functions in the
+private section.
+
+```cpp
+//A private member function can only be called by another function that is a member of its class. Even an object cannot invoke a private function using the dot operator.
+```
+
+>> NOTE : In the upper program, check_binary() is a private function.
+
+> ## Arrays with in a Class
+```cpp
+const int size = 10; // provides value for array size
+class array
+{
+int a[size]; // ‘a’ is int type array
+public:
+void setval(void);
+void display(void);
+};
+```
+
+> ### <mark> Program 5.3 Processing Shopping List
+```cpp
+#include <iostream>
+using namespace std;
+
+class ITEMS
+{
+    int itemCode[100];
+    float itemPrice[100];
+    string itemName[100];
+    int count = 0;
+
+    public:
+        void homePage(ITEMS);
+        void getItem(void);
+        void totalAmount(void);
+        void removeItem(void);
+        void displayItem(void);
+};
+
+/*_____________________Making function for adding items and their price____________________*/
+void ITEMS :: getItem(void)
+{
+    cout << "Enter The Item Code : ";
+    cin >> itemCode[count];
+    cout << "Enter The Item Name : ";
+    cin >> itemName[count];
+    cout << "Enter The Item Price : ";
+    cin >> itemPrice[count];
+    cout << endl << endl;
+    count++;
+}
+
+/*_____________________Function for Calculate total price____________________*/
+void ITEMS :: totalAmount(void)
+{
+    float sum = 0;
+    for(int i = 0; i<count; i++){
+        sum+=itemPrice[i];
+    }
+    cout <<endl << endl <<"Total price of your items is : " << sum << endl<<endl;
+}
+/*_____________________Function for remove items____________________*/
+void ITEMS :: removeItem(void)
+{
+    int code;
+    cout << "Enter Item code : ";
+    cin >> code;
+    for (int i = 0; i < count; i++)
+    {
+        if(itemCode[i] == code)
+            itemPrice[i] = 0;
+    }
+    
+}
+/*_____________________Function for displaying all items____________________*/
+void ITEMS :: displayItem(void)
+{
+    cout << endl << "\t\t\t"<<"Name" <<"\t\t" << "Code" << "\t\t"<<"Price" << endl;
+    for (int i = 0; i < count; i++)
+    {
+        cout << endl << "\t\t\t" << itemName[i] <<"\t\t"<<itemCode[i] << "\t\t" << itemPrice[i] << endl;
+    }
+}
+
+/*_____________________Function for showing option/Home page____________________*/
+void ITEMS :: homePage(ITEMS customer)
+{
+    cout << endl<<endl<<"___________________________Welcome to My Mini Cart______________________________"<<endl <<endl;
+    int choose;
+    do
+    {
+        cout << "Please, Decide sir, What do you want? "<<endl;
+        cout << endl<< "\t1:Add an item";
+        cout << endl<< "\t2:Display total price";
+        cout << endl<< "\t3:Delete an item";
+        cout << endl<< "\t4:Display your all items";
+        cout << endl<< "\t5:Thanks sir!" << endl << endl; 
+        cout << "Enter Your Choice Sir : ";               
+        cin >> choose;
+
+        switch (choose)
+        {
+        case 1:
+            customer.getItem();
+            break;
+        case 2:
+            customer.totalAmount();
+            break;
+        case 3:
+            customer.removeItem();
+            break;
+        case 4:
+            customer.displayItem();
+            break;
+        case 5:
+            break;
+        
+        default:
+            cout <<endl<< "Please try again sir!" << endl;
+            break;
+        }
+    
+    } while (choose!=5);
+    
+
+
+}
+
+int main()
+{
+    ITEMS customer01, customer02;
+    customer01.homePage(customer01);
+}
+```
