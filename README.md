@@ -1,4 +1,5 @@
 <!-- ______________________________________________________Chapter-01 Starts here_________________________________________________ -->
+
 # <mark>Chapter - 01
 
 > # Principles of Object-Oriented Programming
@@ -238,6 +239,7 @@ systems.
 <br>
 
 <!-- ______________________________________________________Chapter-02 Starts here_________________________________________________ -->
+
 # <mark>Chapter - 02
 
 > # Beginning with C++
@@ -451,7 +453,9 @@ cout << "The average is : " << avg << endl;
 <br>
 
 <!-- ______________________________________________________Chapter-05 Starts here_________________________________________________ -->
+
 # <mark> Chapter - 05
+
 > # Classes and Objects
 
 ## **Introduction**
@@ -589,8 +593,6 @@ members </mark>and the functions are known as <mark>member functions</mark>. <ma
 The binding of data and functions together into a single class-type variable is referred to as encapsulation.
 ```
 
-![Data hiding img](dataDiding.png)
-
 **Fig.** Data hiding in classes
 
 > ## A Simple Class Example
@@ -626,8 +628,8 @@ objects.</mark>
 
 General format for calling a member function :
 
-```object-name.function-name (actual-arguments);
-
+```
+object-name.function-name (actual-arguments);
 ```
 
 For example, the function call statement:
@@ -652,6 +654,7 @@ of data hiding and therefore should be avoided.
 
  <br>
  Member functions can be defined in two places:
+
 • Outside the class definition.
 <br>
 • Inside the class definition.
@@ -666,22 +669,22 @@ Member functions that are declared inside a class have to be defined separately 
 <br>
 
 An important difference between a member function and a normal function is that a member function incorporates a membership **‘identity label’** in the header. This ‘label’ tells the compiler which class the function belongs to.
-<br> 
+<br>
 The general form of a member function definition is:
 
-```
+```cpp
  return-type class-name :: function-name (argument declaration)
  {
  Function body
  }
 ```
+
 <br>
 
 <mark>The membership label class-name:: tells the compiler that the function function-name belongs to the class class-name.</mark>That is, the
-scope of the function is restricted to the class-name specified in the
+scope of the function is restricted to the class name specified in the
 header line.
-
-**The symbol :: is called the scope resolution operator.**
+**The symbol:: is** called the scope resolution operator.\*\*
 <br>
 
 The member functions have some special characteristics that are often used in program development.
@@ -692,14 +695,27 @@ These characteristics are:
 • Several different classes can use the same function name. The
 ‘membership label’ will resolve their scope.
 <br><br>
-• Member functions can access the private data of the class. A nonmember function cannot do so. (However, an exception to this rule is a friend function discussed later.)
+• Member functions can access the private data of the class. A nonmember function cannot do so. (However, an exception to this rule is a friend function.)
 <br><br>
 • A member function can call another member function directly, without using the dot operator.
 </mark>
 
+```cpp
+void item::getdata(int a, float b)
+{
+   number = a;
+   cost = b;
+}
+void item::putdata(void)
+{
+   cout << "Number :" << number << endl;
+   cout << "Cost :" << cost << endl;
+}
+```
+
 <br>
 
->### Inside the Class Definition
+> ### Inside the Class Definition
 
 <br>
 
@@ -724,7 +740,7 @@ Example code:
 
 inline return_type function_name(){
        //single statement.
-} 
+}
 */
 
 };
@@ -736,4 +752,71 @@ inline return_type function_name(){
 
 <br>
 
->## DA C++ Program with Class
+> ## C++ Program with Class
+
+### <mark>Program 5.1 Class Implementation
+
+```cpp
+#include <iostream>
+using namespace std;
+/*_____________________Creating Class____________________*/
+class item
+{
+int number;
+float cost;
+public:
+/*_____________________Declearing member function to define outside____________________*/
+    void getData(int a, float b);
+/*_____________________Member function defined inside Clas____________________*/
+    void putData(void)
+    {
+        cout << "Number: " << number << endl;
+        cout << "Cost: " << cost << endl;
+    }
+};
+
+/*_____________________Outside member function defination____________________*/
+void item :: getData(int a, float b)
+{
+    number = a;
+    cost = b;
+}
+
+int main()
+{
+    item x,y;//Creating Object/var where data type is item.
+
+    cout << "X item :" << endl;
+    x.getData(12,34.24);
+    x.putData();
+
+    cout << "Y item :" << endl;
+    y.getData(2,22.33);
+    y.putData();
+}
+```
+
+> ## Making an Outside Function Inline
+
+<mark>One of the objectives of OOP is to separate the details of
+implementation from the class definition.</mark> It is therefore good practice to define the member functions outside the class.
+
+```cpp
+class item
+{
+....
+....
+public:
+void getdata(int a, float b); // declaration
+};
+inline void item :: getdata(int a, float b) // definition
+{
+number = a;
+cost = b;
+}
+```
+
+> ## Nesting of Member Functions
+      A member function can be called by using its name inside another member function of the same class. This is known as nesting of member functions.
+
+### <mark>Program 5.2 Nesting of Member Functions
