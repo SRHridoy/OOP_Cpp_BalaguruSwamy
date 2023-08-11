@@ -1035,3 +1035,6 @@ int main()
     customer01.homePage(customer01);
 }
 ```
+
+> # Memory Allocation for Objects
+

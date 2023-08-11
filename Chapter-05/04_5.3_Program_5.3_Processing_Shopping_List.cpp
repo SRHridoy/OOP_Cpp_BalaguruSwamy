@@ -62,7 +62,7 @@ void ITEMS :: displayItem(void)
 }
 
 /*_____________________Function for showing option/Home page____________________*/
-void ITEMS :: homePage(ITEMS customer)
+void ITEMS :: homePage(ITEMS customer)//Objects as Arguments
 {
     cout << endl<<endl<<"___________________________Welcome to My Mini Cart______________________________"<<endl <<endl;
     int choose;
