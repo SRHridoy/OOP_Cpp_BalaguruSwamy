@@ -603,8 +603,8 @@ class item
 int number; // variables declaration
 float cost; // private by default
 public:
-void getdata(int a, void b )// functions declaration
-putdata(void); // using prototype
+void getdata(int a, void b );// functions declaration
+void putdata(void); // using prototype
 }; // ends with semicolon.
 ```
 
