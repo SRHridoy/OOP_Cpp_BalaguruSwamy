@@ -1,3 +1,0 @@
-Hello
-This is second line
-This is third line from append mode ! 

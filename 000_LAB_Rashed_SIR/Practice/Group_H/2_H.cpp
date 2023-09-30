@@ -1,0 +1,5 @@
+/*
+
+    Write a program to get the student details and print the same using pointers to objects and pointers to members of a class. Create a class student. And use appropriate functions and data members...
+
+*/
